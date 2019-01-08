@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Ia_ComandaRestaurante.Models;
+using Ia_ComandaRestaurante.Data;
 
 namespace Ia_ComandaRestaurante
 {
@@ -33,14 +36,20 @@ namespace Ia_ComandaRestaurante
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<Ia_ComandaRestauranteContext>(options =>
+                   options.UseMySql(Configuration.GetConnectionString("Ia-ComandaRestauranteContext"), builder =>
+                        builder.MigrationsAssembly("Ia-ComandaRestaurante")));
+            services.AddScoped<SeedingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService SeedingService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                SeedingService.Seed();
             }
             else
             {

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Ia_ComandaRestaurante.Models.ViewModels.Cozinha>
+
+@{
+    ViewData["Title"] = "Cozinha";
+    int i = 0;
+}
+
+<h1>Cozinha</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PedidosCozinha.ElementAt(1).IdPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PedidosCozinha.ElementAt(1).ItensDoPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PedidosCozinha.ElementAt(1).PrazoDoPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PedidosCozinha.ElementAt(1).PrecoDoPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PedidosCozinha.ElementAt(1).Observacoes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedidosCozinha.ElementAt(i).IdPedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedidosCozinha.ElementAt(i).ItensCozinha.ElementAt(i))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedidosCozinha.ElementAt(i).PrazoDoPedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedidosCozinha.ElementAt(i).PrecoDoPedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedidosCozinha.ElementAt(i).Observacoes)
+                </td>
+                <td>
+                <a asp-action="Edit" asp-route-id="@item.idPedido">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.idPedido">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.idPedido">Deletar</a>
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>

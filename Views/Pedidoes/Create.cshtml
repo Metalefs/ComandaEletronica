@@ -1,0 +1,58 @@
+﻿@model Ia_ComandaRestaurante.Models.ViewModels.Pedido
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Anotar novo Pedido</h1>
+
+<h4>Pedido</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PrazoDoPedido" class="control-label"></label>
+                <input asp-for="PrazoDoPedido" class="form-control" />
+                <span asp-validation-for="PrazoDoPedido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MesaDoPedido" class="control-label"></label>
+                <input asp-for="MesaDoPedido" class="form-control" />
+                <span asp-validation-for="MesaDoPedido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FuncionarioResponsavel" class="control-label"></label>
+                <input asp-for="FuncionarioResponsavel" class="form-control" />
+                <span asp-validation-for="FuncionarioResponsavel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecoDoPedido" class="control-label"></label>
+                <input asp-for="PrecoDoPedido" class="form-control" />
+                <span asp-validation-for="PrecoDoPedido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItensDoPedido" class="control-label"></label>
+                <input asp-for="ItensDoPedido" class="form-control" />
+                <span asp-validation-for="ItensDoPedido" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar aos pedidos</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

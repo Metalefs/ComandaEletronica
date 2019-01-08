@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Ia_ComandaRestaurante.Models.ViewModels.Menu>
+
+@{
+        ViewData["Title"] = "Cardápio";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Adicionar Mais</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Img)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Img)
+                <img id="@Html.DisplayFor(model=>item.Nome)" alt="@Html.DisplayFor(model =>item.Descricao)" => item.Img" width="50" height="50" class="card-img" src="@Html.DisplayFor(model =>item.Img)" />
+
+            </td>
+
+
+
+<td>
+
+
+
+<a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+
+
+
+<a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+
+
+
+<a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+
+
+
+</td>
+
+
+
+</tr>
+}
+    </tbody>
+</table>
