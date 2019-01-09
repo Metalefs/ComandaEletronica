@@ -3,14 +3,16 @@ using System;
 using Ia_ComandaRestaurante.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Ia_ComandaRestaurante.Migrations
 {
     [DbContext(typeof(Ia_ComandaRestauranteContext))]
-    partial class Ia_ComandaRestauranteContextModelSnapshot : ModelSnapshot
+    [Migration("20190108231706_first")]
+    partial class first
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

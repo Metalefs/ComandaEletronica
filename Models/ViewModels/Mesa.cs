@@ -7,6 +7,12 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
 {
     public class Mesa
     {
+        private Ia_ComandaRestauranteContext _context;
+
+        public Mesa(Ia_ComandaRestauranteContext context)
+        {
+            _context = context;
+        }
         [Key]
         public int IdMesa { get; set; }
         public string NomeDoCliente { get; set; }
@@ -25,6 +31,7 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
             NumeroDaMesa = numeroDaMesa;
             QuantidadeDePessoas = quantidadeDePessoas;
             Disponibilidade = EstadoDaMesa.OCUPADO;
+            //_context.Add(this);
         }
     }
 }

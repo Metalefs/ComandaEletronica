@@ -1,29 +1,28 @@
 ﻿@model IEnumerable<Ia_ComandaRestaurante.Models.ViewModels.Copa>
 
 @{
-    ViewData["Title"] = "Copa";
-    int i = 0;
-}
+    ViewData["Title"] = "Index";
+    int i = 0;}
 
-<h1>@ViewData["Title"]</h1>
+<h1>Index</h1>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
+            <td>
+                @Html.DisplayFor(model => model.ElementAt(0).IdPedido)
+            </td>
             <th>
-                @Html.DisplayNameFor(model => model.PedidosCopa.ElementAt(1).IdPedido)
+                Mesa
             </th>
+            <td>
+                @Html.DisplayFor(model => model.ElementAt(0).IdMenu)
+            </td>
             <th>
-                @Html.DisplayNameFor(model => model.PedidosCopa.ElementAt(1).ItensDoPedido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PedidosCopa.ElementAt(1).PrazoDoPedido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PedidosCopa.ElementAt(1).PrecoDoPedido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PedidosCopa.ElementAt(1).Observacoes)
+                @Html.DisplayNameFor(model => model.Observacoes)
             </th>
             <th></th>
         </tr>
@@ -33,24 +32,21 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PedidosCopa.ElementAt(i).IdPedido)
+                    @Html.DisplayFor(modelItem => item.IdPedido)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PedidosCopa.ElementAt(i).ItensCopa.ElementAt(i))
+                    @Html.DisplayFor(modelItem => item.ListAll().ElementAt(i).MesaDoPedido)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PedidosCopa.ElementAt(i).PrazoDoPedido)
+                    @Html.DisplayFor(modelItem => item.ListAll().ElementAt(i).ItensDoPedido)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PedidosCopa.ElementAt(i).PrecoDoPedido)
+                    @Html.DisplayFor(modelItem => item.Observacoes)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PedidosCopa.ElementAt(i).Observacoes)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.idPedido">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.idPedido">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.idPedido">Deletar</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdPedido">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdPedido">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdPedido">Delete</a>
                 </td>
             </tr>
             i++;

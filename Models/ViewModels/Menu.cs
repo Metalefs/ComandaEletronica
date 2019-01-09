@@ -7,8 +7,15 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
 {
     public class Menu
     {
+        private Ia_ComandaRestauranteContext _context;
+
+        public Menu(Ia_ComandaRestauranteContext context)
+        {
+            _context = context;
+        }
+
         [Key]
-        public int Id { get; set; }
+        public int IdMenu { get; set; }
         public string Nome { get; set; }
         public string Tipo { get; set; }
         public float Preco { get; set; }
@@ -30,6 +37,7 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
             Descricao = descricao;
             Img = img;
             Complexidade = complexidade;
+           // _context.Add(this);
         }
     }
 }

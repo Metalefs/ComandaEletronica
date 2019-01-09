@@ -3,14 +3,16 @@ using System;
 using Ia_ComandaRestaurante.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Ia_ComandaRestaurante.Migrations
 {
     [DbContext(typeof(Ia_ComandaRestauranteContext))]
-    partial class Ia_ComandaRestauranteContextModelSnapshot : ModelSnapshot
+    [Migration("20190108194525_correction3")]
+    partial class correction3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,28 +21,20 @@ namespace Ia_ComandaRestaurante.Migrations
 
             modelBuilder.Entity("Ia_ComandaRestaurante.Models.ViewModels.Copa", b =>
                 {
-                    b.Property<int>("IdPedido")
+                    b.Property<int>("idPedido")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("IdMenu");
-
-                    b.Property<string>("Observacoes");
-
-                    b.HasKey("IdPedido");
+                    b.HasKey("idPedido");
 
                     b.ToTable("Copa");
                 });
 
             modelBuilder.Entity("Ia_ComandaRestaurante.Models.ViewModels.Cozinha", b =>
                 {
-                    b.Property<int>("IdPedido")
+                    b.Property<int>("idPedido")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("IdMenu");
-
-                    b.Property<string>("Observacoes");
-
-                    b.HasKey("IdPedido");
+                    b.HasKey("idPedido");
 
                     b.ToTable("Cozinha");
                 });
@@ -63,7 +57,7 @@ namespace Ia_ComandaRestaurante.Migrations
 
             modelBuilder.Entity("Ia_ComandaRestaurante.Models.ViewModels.Menu", b =>
                 {
-                    b.Property<int>("IdMenu")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Descricao");
@@ -72,11 +66,23 @@ namespace Ia_ComandaRestaurante.Migrations
 
                     b.Property<string>("Nome");
 
+                    b.Property<int?>("PedidoIdPedido");
+
+                    b.Property<int?>("PedidoIdPedido1");
+
+                    b.Property<int?>("PedidoIdPedido2");
+
                     b.Property<float>("Preco");
 
                     b.Property<string>("Tipo");
 
-                    b.HasKey("IdMenu");
+                    b.HasKey("Id");
+
+                    b.HasIndex("PedidoIdPedido");
+
+                    b.HasIndex("PedidoIdPedido1");
+
+                    b.HasIndex("PedidoIdPedido2");
 
                     b.ToTable("Menu");
                 });
@@ -106,11 +112,13 @@ namespace Ia_ComandaRestaurante.Migrations
                     b.Property<int>("IdPedido")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("CopaidPedido");
+
+                    b.Property<int?>("CozinhaidPedido");
+
                     b.Property<int>("Estado");
 
                     b.Property<int?>("FuncionarioIdFuncionario");
-
-                    b.Property<int?>("ItensDoPedidoIdMenu");
 
                     b.Property<int?>("MesaDoPedidoIdMesa");
 
@@ -120,28 +128,48 @@ namespace Ia_ComandaRestaurante.Migrations
 
                     b.Property<float>("PrecoDoPedido");
 
-                    b.Property<string>("TipoDoPedido");
-
                     b.HasKey("IdPedido");
 
-                    b.HasIndex("FuncionarioIdFuncionario");
+                    b.HasIndex("CopaidPedido");
 
-                    b.HasIndex("ItensDoPedidoIdMenu");
+                    b.HasIndex("CozinhaidPedido");
+
+                    b.HasIndex("FuncionarioIdFuncionario");
 
                     b.HasIndex("MesaDoPedidoIdMesa");
 
                     b.ToTable("Pedido");
                 });
 
+            modelBuilder.Entity("Ia_ComandaRestaurante.Models.ViewModels.Menu", b =>
+                {
+                    b.HasOne("Ia_ComandaRestaurante.Models.ViewModels.Pedido")
+                        .WithMany("ItensCopa")
+                        .HasForeignKey("PedidoIdPedido");
+
+                    b.HasOne("Ia_ComandaRestaurante.Models.ViewModels.Pedido")
+                        .WithMany("ItensCozinha")
+                        .HasForeignKey("PedidoIdPedido1");
+
+                    b.HasOne("Ia_ComandaRestaurante.Models.ViewModels.Pedido")
+                        .WithMany("ItensDoPedido")
+                        .HasForeignKey("PedidoIdPedido2");
+                });
+
             modelBuilder.Entity("Ia_ComandaRestaurante.Models.ViewModels.Pedido", b =>
                 {
+                    b.HasOne("Ia_ComandaRestaurante.Models.ViewModels.Copa")
+                        .WithMany("PedidosCopa")
+                        .HasForeignKey("CopaidPedido")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Ia_ComandaRestaurante.Models.ViewModels.Cozinha")
+                        .WithMany("PedidosCozinha")
+                        .HasForeignKey("CozinhaidPedido");
+
                     b.HasOne("Ia_ComandaRestaurante.Models.ViewModels.Funcionario")
                         .WithMany("Pedidos")
                         .HasForeignKey("FuncionarioIdFuncionario");
-
-                    b.HasOne("Ia_ComandaRestaurante.Models.ViewModels.Menu", "ItensDoPedido")
-                        .WithMany()
-                        .HasForeignKey("ItensDoPedidoIdMenu");
 
                     b.HasOne("Ia_ComandaRestaurante.Models.ViewModels.Mesa", "MesaDoPedido")
                         .WithMany()

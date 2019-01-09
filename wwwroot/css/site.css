@@ -43,6 +43,14 @@ html {
 #nav-margin{
     margin-bottom:10px;
 }
+.nav-link{
+    color:aliceblue;
+
+}
+.nav-link:hover{
+    color:white;
+    left:1px;
+}
 
 body {
   /* Margin bottom by footer height */

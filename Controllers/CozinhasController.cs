@@ -34,7 +34,7 @@ namespace Ia_ComandaRestaurante.Controllers
             }
 
             var cozinha = await _context.Cozinha
-                .FirstOrDefaultAsync(m => m.idPedido == id);
+                .FirstOrDefaultAsync(m => m.IdPedido == id);
             if (cozinha == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace Ia_ComandaRestaurante.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idPedido")] Cozinha cozinha)
+        public async Task<IActionResult> Create([Bind("IdPedido,IdMenu,Observacoes")] Cozinha cozinha)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace Ia_ComandaRestaurante.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idPedido")] Cozinha cozinha)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPedido,IdMenu,Observacoes")] Cozinha cozinha)
         {
-            if (id != cozinha.idPedido)
+            if (id != cozinha.IdPedido)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Ia_ComandaRestaurante.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CozinhaExists(cozinha.idPedido))
+                    if (!CozinhaExists(cozinha.IdPedido))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Ia_ComandaRestaurante.Controllers
             }
 
             var cozinha = await _context.Cozinha
-                .FirstOrDefaultAsync(m => m.idPedido == id);
+                .FirstOrDefaultAsync(m => m.IdPedido == id);
             if (cozinha == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace Ia_ComandaRestaurante.Controllers
 
         private bool CozinhaExists(int id)
         {
-            return _context.Cozinha.Any(e => e.idPedido == id);
+            return _context.Cozinha.Any(e => e.IdPedido == id);
         }
     }
 }

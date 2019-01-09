@@ -51,18 +51,18 @@ namespace Ia_ComandaRestaurante.Data
             Menu CarneAssada = new Menu(ListaCardapio[6].Nome, ListaCardapio[6].Tipo, ListaCardapio[6].Preco, ListaCardapio[6].Descricao, ListaCardapio[6].Img, ListaCardapio[6].Complexidade);
             //____________________________________________________________________________________
             //MESAS
-            Mesa mesa1 = new Mesa("Rachel Angely", 10, 4);
-            Mesa mesa2 = new Mesa("Elros Lossehelin", 5, 6);
-            Mesa mesa3 = new Mesa("Goku son", 7, 10);
+            Mesa mesa1 = new Mesa("Raquel Angelica", 10, 4);
+            Mesa mesa2 = new Mesa("Joel Santana", 5, 6);
+            Mesa mesa3 = new Mesa("Gustavo Henrique", 7, 10);
             //____________________________________________________________________________________
             //PEDIDOS
             Pedido p1 = new Pedido(mesa1, f1);
             Pedido p2 = new Pedido(mesa2, f2);
             Pedido p3 = new Pedido(mesa3, f2);
 
-            p1.AdicionarItens(Sanduiche);p1.AdicionarItens(Nachos);p1.AdicionarItens(Cerveja);
+            p1.AdicionarItens(Sanduiche);
             p2.AdicionarItens(Cerveja);
-            p3.AdicionarItens(Pizza, Pizza, CarneAssada);p3.AdicionarItens(CarneAssada, CarneAssada, Sanduiche);p3.AdicionarItens(Sanduiche, Nachos, Tacos);
+            p3.AdicionarItens(Pizza);
             //____________________________________________________________________________________
             //TEMPOS DE ENTREGA
             List<Pedido> pedidos2 = new List<Pedido>()
@@ -77,6 +77,49 @@ namespace Ia_ComandaRestaurante.Data
                 pedidos2.ElementAt(i).PrazoDoPedido = c1.CalcularTempo(pedidos2);
                 i++;
             }
+            //____________________________________________________________________________________
+            //COPA
+
+            
+            List<Pedido> PedidosCopa = new List<Pedido>();
+            i = 0;
+            foreach(Pedido pedido in pedidos2)
+            {
+                if(pedidos2.ElementAt(i).TipoDoPedido == "Bebida")
+                {
+                    PedidosCopa.Add(pedidos2.ElementAt(i));
+                }
+                i++;
+            }
+            int x = 0;
+            foreach(Pedido pedido in PedidosCopa)
+            {
+                _context.Add(PedidosCopa.ElementAt(x).AdicionarCopa((PedidosCopa.ElementAt(x).ItensDoPedido)));
+                x++;
+            }
+
+            //____________________________________________________________________________________
+            //COZINHA
+
+            
+            List<Pedido> PedidosCozinha = new List<Pedido>();
+            i = 0;
+            foreach (Pedido pedido in pedidos2)
+            {
+                if (pedidos2.ElementAt(i).TipoDoPedido == "Comida")
+                {
+                    PedidosCozinha.Add(pedidos2.ElementAt(i));
+                }
+                i++;
+            }
+            x = 0;
+            foreach (Pedido pedido in PedidosCozinha)
+            {
+                _context.Add(PedidosCozinha.ElementAt(x).AdicionarCozinha((PedidosCozinha.ElementAt(x).ItensDoPedido)));
+                x++;
+            }
+
+
             //____________________________________________________________________________________
             //ADICIONANDO AO BANCO DE DADOS
 

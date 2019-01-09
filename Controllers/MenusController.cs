@@ -34,7 +34,7 @@ namespace Ia_ComandaRestaurante.Controllers
             }
 
             var menu = await _context.Menu
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.IdMenu == id);
             if (menu == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace Ia_ComandaRestaurante.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Tipo,Preco,Descricao,Img")] Menu menu)
+        public async Task<IActionResult> Create([Bind("IdMenu,Nome,Tipo,Preco,Descricao,Img")] Menu menu)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace Ia_ComandaRestaurante.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Tipo,Preco,Descricao,Img")] Menu menu)
+        public async Task<IActionResult> Edit(int id, [Bind("IdMenu,Nome,Tipo,Preco,Descricao,Img")] Menu menu)
         {
-            if (id != menu.Id)
+            if (id != menu.IdMenu)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Ia_ComandaRestaurante.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MenuExists(menu.Id))
+                    if (!MenuExists(menu.IdMenu))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Ia_ComandaRestaurante.Controllers
             }
 
             var menu = await _context.Menu
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.IdMenu == id);
             if (menu == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace Ia_ComandaRestaurante.Controllers
 
         private bool MenuExists(int id)
         {
-            return _context.Menu.Any(e => e.Id == id);
+            return _context.Menu.Any(e => e.IdMenu == id);
         }
     }
 }

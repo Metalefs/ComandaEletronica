@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.MesaDoPedido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FuncionarioResponsavel)
+                @Html.DisplayNameFor(model => model.GetFuncionarioResponsavel())
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PrecoDoPedido)
@@ -44,13 +44,13 @@
                Mesa @Html.DisplayFor(modelItem => item.MesaDoPedido.NumeroDaMesa)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FuncionarioResponsavel.NomeDoFuncionario)
+                @Html.DisplayFor(modelItem => item.GetFuncionarioResponsavel())
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PrecoDoPedido) Reais
+               R$ @Html.DisplayFor(modelItem => item.PrecoDoPedido) 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ItensDoPedido.ElementAt(0).Nome)
+                @Html.DisplayFor(modelItem => item.ItensDoPedido)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)

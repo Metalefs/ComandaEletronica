@@ -34,7 +34,7 @@ namespace Ia_ComandaRestaurante.Controllers
             }
 
             var copa = await _context.Copa
-                .FirstOrDefaultAsync(m => m.idPedido == id);
+                .FirstOrDefaultAsync(m => m.IdPedido == id);
             if (copa == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace Ia_ComandaRestaurante.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idPedido")] Copa copa)
+        public async Task<IActionResult> Create([Bind("IdPedido,IdMenu,Observacoes")] Copa copa)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace Ia_ComandaRestaurante.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idPedido")] Copa copa)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPedido,IdMenu,Observacoes")] Copa copa)
         {
-            if (id != copa.idPedido)
+            if (id != copa.IdPedido)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Ia_ComandaRestaurante.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CopaExists(copa.idPedido))
+                    if (!CopaExists(copa.IdPedido))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Ia_ComandaRestaurante.Controllers
             }
 
             var copa = await _context.Copa
-                .FirstOrDefaultAsync(m => m.idPedido == id);
+                .FirstOrDefaultAsync(m => m.IdPedido == id);
             if (copa == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace Ia_ComandaRestaurante.Controllers
 
         private bool CopaExists(int id)
         {
-            return _context.Copa.Any(e => e.idPedido == id);
+            return _context.Copa.Any(e => e.IdPedido == id);
         }
     }
 }

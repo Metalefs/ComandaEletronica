@@ -12,7 +12,7 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
         public string NomeDoFuncionario { get; set; }
         public string Cargo { get; set; }
         public string SenhaDeAcesso { get; set; }
-        public ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
+        public ICollection<Pedido> Pedidos { get; set; } 
 
         public Funcionario()
         {

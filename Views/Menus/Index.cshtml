@@ -4,7 +4,7 @@
         ViewData["Title"] = "Cardápio";
 }
 
-<h1>Index</h1>
+<h1>Cardápio</h1>
 
 <p>
     <a asp-action="Create">Adicionar Mais</a>
@@ -47,7 +47,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Img)
-                <img id="@Html.DisplayFor(model=>item.Nome)" alt="@Html.DisplayFor(model =>item.Descricao)" => item.Img" width="50" height="50" class="card-img" src="@Html.DisplayFor(model =>item.Img)" />
+                <img id="@Html.DisplayFor(model=>item.Nome)" alt="@Html.DisplayFor(model =>item.Descricao)" width="50" height="50" class="card-img" src="@Html.DisplayFor(model =>item.Img)" />
 
             </td>
 
@@ -57,15 +57,15 @@
 
 
 
-<a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+<a asp-action="Edit" asp-route-id="@item.IdMenu">Editar</a> |
 
 
 
-<a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+<a asp-action="Details" asp-route-id="@item.IdMenu">Detalhes</a> |
 
 
 
-<a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+<a asp-action="Delete" asp-route-id="@item.IdMenu">Deletar</a>
 
 
 

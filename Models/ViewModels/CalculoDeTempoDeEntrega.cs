@@ -17,16 +17,30 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
         public float PrecoTotal { get; set; }
         public int TempoDeEntrega { get; set; }
         public string ARFFLocation  { get; set; }
-
+        public int SomaItensCozinha { get; set; }
+        public int SomaItensCopa { get; set; }
 
         public string CalcularTempo(List<Pedido> Pedidos)
         {
+            int i = 0;
             var ListaDePedidos = Pedidos;
+            foreach (var Pedido in Pedidos)
+            {
+                if (Pedidos.ElementAt(i).ItensDoPedido.Tipo == "Bebida")
+                {
+                    SomaItensCopa++;
+                }
+                else
+                {
+                    SomaItensCozinha++;
+                }
+                i++;
+            }
 
             QuantidadeDeMesas = Pedidos.Sum(LP1 => LP1.MesaDoPedido.IdMesa);
             QuantidadeDeClientes = Pedidos.Sum(LP=> LP.MesaDoPedido.QuantidadeDePessoas);
-            QuantidadePedidosCozinha = Pedidos.Sum(LP => LP.SomaItensCozinha);
-            QuantidadePedidosCopa = Pedidos.Sum(LP => LP.SomaItensCopa);
+            QuantidadePedidosCozinha = SomaItensCozinha;
+            QuantidadePedidosCopa = SomaItensCopa;
             ComplexidadeMediaDosPedidos = "baixa";
             TempoDeEntrega = 0; //DEFAULT
             PrecoTotal = Pedidos.Sum(LP => LP.PrecoDoPedido);

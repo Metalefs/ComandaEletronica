@@ -13,6 +13,14 @@ namespace Ia_ComandaRestaurante.Controllers
     public class PedidoesController : Controller
     {
         private readonly Ia_ComandaRestauranteContext _context;
+        private readonly Pedido _Pedido;
+        
+
+
+        public PedidoesController(Pedido pedido)
+        {
+            _Pedido = pedido;
+        }
 
         public PedidoesController(Ia_ComandaRestauranteContext context)
         {
@@ -22,6 +30,7 @@ namespace Ia_ComandaRestaurante.Controllers
         // GET: Pedidoes
         public async Task<IActionResult> Index()
         {
+            var list = _Pedido.ListAll();
             return View(await _context.Pedido.ToListAsync());
         }
 
@@ -58,7 +67,20 @@ namespace Ia_ComandaRestaurante.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(pedido);
+                
+                if (pedido.TipoDoPedido == "Bebida")
+                {
+                    Copa copa = new Copa(pedido, pedido.ItensDoPedido);
+                    _context.Add(copa);
+                }
+                else
+                {
+                    Cozinha cozinha = new Cozinha(pedido, pedido.ItensDoPedido);
+                    _context.Add(cozinha);
+                }
+
+
+                _context.AddRange(pedido);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
