@@ -10,7 +10,7 @@
 <div>
     <h4>Mesa</h4>
     <hr />
-    <dl class="row">
+    <dl class="table-row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.NomeDoCliente)
         </dt>
@@ -39,7 +39,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdMesa" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Deletar" class="btn btn-danger" /> |
         <a asp-action="Index">Voltar à lista</a>
     </form>
 </div>

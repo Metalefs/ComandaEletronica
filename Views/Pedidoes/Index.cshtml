@@ -2,55 +2,64 @@
 
 @{
     ViewData["Title"] = "Pedidos";
-    int i = 0;
+    
 }
 
 <h1>Pedidos</h1>
 
 <p>
-    <a asp-action="Create">Anotar novo Pedido</a>
+    <a asp-action="Create">Anotar novo Pedido</a>;
 </p>
 <table class="table">
-    <thead>
-        <tr>
+    <thead class="table table-success ">
+        <tr class="table table-success" >
             <th>
                 @Html.DisplayNameFor(model => model.PrazoDoPedido)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MesaDoPedido)
+            <th class="alert-light">
+                Id da Mesa
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GetFuncionarioResponsavel())
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.PrecoDoPedido)
             </th>
+            <td>
+                Id do Menu
+            </td>
             <th>
-                @Html.DisplayNameFor(model => model.ItensDoPedido)
+                @Html.DisplayNameFor(model => model.Observacoes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeDoFuncionario)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Estado)
             </th>
             <th></th>
-        </tr>
-    </thead>
+        </trtable>
+    </theadclass="table>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.PrazoDoPedido) Minutos
+                @Html.DisplayFor(modelItem => item.PrazoDoPedido)
+            </td>
+            <td class="alert-light">
+                @Html.DisplayFor(modelItem => item.IdMesa)
+            </td>
+
+            <td>
+                R$@Html.DisplayFor(modelItem => item.PrecoDoPedido)
             </td>
             <td>
-               Mesa @Html.DisplayFor(modelItem => item.MesaDoPedido.NumeroDaMesa)
+                @Html.DisplayFor(modelItem => item.IdMenu)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GetFuncionarioResponsavel())
+                @Html.DisplayFor(modelItem => item.Observacoes)
             </td>
             <td>
-               R$ @Html.DisplayFor(modelItem => item.PrecoDoPedido) 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItensDoPedido)
+                @Html.DisplayFor(modelItem => item.NomeDoFuncionario)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
@@ -61,7 +70,6 @@
                 <a asp-action="Delete" asp-route-id="@item.IdPedido">Deletar</a>
             </td>
         </tr>
-    i++;
-}
+        }
     </tbody>
 </table>

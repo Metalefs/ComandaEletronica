@@ -10,7 +10,7 @@
 <div>
     <h4>Funcionario</h4>
     <hr />
-    <dl class="row">
+    <dl class="table-row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.NomeDoFuncionario)
         </dt>
@@ -33,7 +33,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdFuncionario" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Deletar" class="btn btn-danger" /> |
         <a asp-action="Index">Voltar</a>
     </form>
 </div>

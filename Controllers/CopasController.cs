@@ -7,16 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Ia_ComandaRestaurante.Models;
 using Ia_ComandaRestaurante.Models.ViewModels;
+using Ia_ComandaRestaurante.Services;
 
 namespace Ia_ComandaRestaurante.Controllers
 {
     public class CopasController : Controller
     {
+        private readonly MenuService _menuService;
+        private readonly Copa _Copa;
+        private readonly CopaService _copaService;
+        private readonly PedidoService _pedidoService;
         private readonly Ia_ComandaRestauranteContext _context;
 
-        public CopasController(Ia_ComandaRestauranteContext context)
+
+        public CopasController(Ia_ComandaRestauranteContext context, MenuService menuService, CopaService copaService, PedidoService pedidoService)
         {
             _context = context;
+            _menuService = menuService;
+            _copaService = copaService;
+            _pedidoService = pedidoService;
         }
 
         // GET: Copas
@@ -25,98 +34,28 @@ namespace Ia_ComandaRestaurante.Controllers
             return View(await _context.Copa.ToListAsync());
         }
 
+
         // GET: Copas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public  IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var copa = await _context.Copa
-                .FirstOrDefaultAsync(m => m.IdPedido == id);
-            if (copa == null)
+            _copaService.Details(id);
+
+            if (_copaService.Details(id) == null)
             {
                 return NotFound();
             }
 
-            return View(copa);
+            return View(_copaService.Details(id));
         }
 
-        // GET: Copas/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: Copas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPedido,IdMenu,Observacoes")] Copa copa)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(copa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(copa);
-        }
 
-        // GET: Copas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var copa = await _context.Copa.FindAsync(id);
-            if (copa == null)
-            {
-                return NotFound();
-            }
-            return View(copa);
-        }
-
-        // POST: Copas/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPedido,IdMenu,Observacoes")] Copa copa)
-        {
-            if (id != copa.IdPedido)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(copa);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CopaExists(copa.IdPedido))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(copa);
-        }
-
-        // GET: Copas/Delete/5
+        // GET: Pedidoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,8 +63,8 @@ namespace Ia_ComandaRestaurante.Controllers
                 return NotFound();
             }
 
-            var copa = await _context.Copa
-                .FirstOrDefaultAsync(m => m.IdPedido == id);
+            var copa = _copaService.Delete(id);
+
             if (copa == null)
             {
                 return NotFound();
@@ -134,20 +73,19 @@ namespace Ia_ComandaRestaurante.Controllers
             return View(copa);
         }
 
-        // POST: Copas/Delete/5
+        // POST: Pedidoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var copa = await _context.Copa.FindAsync(id);
-            _context.Copa.Remove(copa);
-            await _context.SaveChangesAsync();
+
+            _copaService.Remove(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool CopaExists(int id)
         {
-            return _context.Copa.Any(e => e.IdPedido == id);
+            return _context.Copa.Any(e => e.IdCopa == id);
         }
     }
 }

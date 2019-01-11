@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Ia_ComandaRestaurante.Models;
 using Ia_ComandaRestaurante.Data;
+using Ia_ComandaRestaurante.Services;
 
 namespace Ia_ComandaRestaurante
 {
@@ -41,6 +42,12 @@ namespace Ia_ComandaRestaurante
                    options.UseMySql(Configuration.GetConnectionString("Ia-ComandaRestauranteContext"), builder =>
                         builder.MigrationsAssembly("Ia-ComandaRestaurante")));
             services.AddScoped<SeedingService>();
+            services.AddScoped<PedidoService>();
+            services.AddScoped<MenuService>();
+            services.AddScoped<MesaService>();
+            services.AddScoped<CozinhaService>();
+            services.AddScoped<CopaService>();
+            services.AddScoped<FuncionarioService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

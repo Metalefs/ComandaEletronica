@@ -1,7 +1,7 @@
 ﻿
 using Ia_ComandaRestaurante.Models.ViewModels.Enums;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ia_ComandaRestaurante.Models.ViewModels
 {
@@ -15,13 +15,14 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdMenu { get; set; }
         public string Nome { get; set; }
         public string Tipo { get; set; }
         public float Preco { get; set; }
         public string Descricao { get; set; }
         public string Img { get; set; }
-        public string Complexidade;
+        public string Complexidade { get; set; }
 
 
         public Menu()
@@ -29,13 +30,14 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
 
         }
 
-        public Menu( string nome, string tipo, float preco, string descricao, string img, string complexidade)
+        public Menu(int idMenu, string nome, string tipo, float preco, string descricao, string img, string complexidade)
         {
             Nome = nome;
             Tipo = tipo;
             Preco = preco;
             Descricao = descricao;
             Img = img;
+            IdMenu = idMenu;
             Complexidade = complexidade;
            // _context.Add(this);
         }

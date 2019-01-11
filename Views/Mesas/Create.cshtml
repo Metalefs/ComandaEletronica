@@ -1,4 +1,4 @@
-﻿@model Ia_ComandaRestaurante.Models.ViewModels.Mesa
+﻿@model Ia_ComandaRestaurante.Models.ViewModels.MesaFormViewModel
 
 @{
     ViewData["Title"] = "Reservar Mesa";
@@ -13,27 +13,30 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NomeDoCliente" class="control-label"></label>
-                <input asp-for="NomeDoCliente" class="form-control" />
-                <span asp-validation-for="NomeDoCliente" class="text-danger"></span>
+                <label asp-for="Mesa.NomeDoCliente" class="control-label"></label>
+                <input asp-for="Mesa.NomeDoCliente" class="form-control" />
+                <span asp-validation-for="Mesa.NomeDoCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumeroDaMesa" class="control-label"></label>
-                <input asp-for="NumeroDaMesa" class="form-control" />
-                <span asp-validation-for="NumeroDaMesa" class="text-danger"></span>
+                <label asp-for="Mesa.NumeroDaMesa" class="control-label"></label>
+                <select asp-for="Mesa.NumeroDaMesa" asp-items="@(new SelectList(Model.ListaMesaDisponivel,"IdMesa","NumeroDaMesa"))" class="form-control"></select>
             </div>
             <div class="form-group">
-                <label asp-for="QuantidadeDePessoas" class="control-label"></label>
-                <input asp-for="QuantidadeDePessoas" class="form-control" />
-                <span asp-validation-for="QuantidadeDePessoas" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Disponibilidade" /> @Html.DisplayNameFor(model => model.Disponibilidade)
-                </label>
+                <label asp-for="Mesa.QuantidadeDePessoas" class="control-label"></label>
+                <input asp-for="Mesa.QuantidadeDePessoas" class="form-control" />
+                <span asp-validation-for="Mesa.QuantidadeDePessoas" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="Mesa.Observacoes" class="control-label"></label>
+                <input asp-for="Mesa.Observacoes" class="form-control" />
+                <span asp-validation-for="Mesa.Observacoes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mesa.Disponibilidade" class="control-label"></label>
+                <select asp-for="Mesa.Disponibilidade" asp-items="@(new SelectList(Model.ListaMesaTotal,"Disponibilidade","Disponibilidade"))" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </form>
     </div>

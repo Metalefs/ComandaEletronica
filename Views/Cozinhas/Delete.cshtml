@@ -4,30 +4,30 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1>Concluir</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>O pedido já foi entregue?</h3>
 <div>
     <h4>Cozinha</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdMenu)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdMenu)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Observacoes)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Observacoes)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCozinha)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdCozinha)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="IdPedido" />
+        <input type="hidden" asp-for="IdCozinha" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Voltar a lista</a>
     </form>
 </div>

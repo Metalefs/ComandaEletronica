@@ -1,7 +1,7 @@
 ﻿
 using Ia_ComandaRestaurante.Models.ViewModels.Enums;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ia_ComandaRestaurante.Models.ViewModels
 {
@@ -14,9 +14,9 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
             _context = context;
         }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdMesa { get; set; }
         public string NomeDoCliente { get; set; }
-        
         public int NumeroDaMesa { get; set; }
         public int QuantidadeDePessoas { get; set; }
         public EstadoDaMesa Disponibilidade { get; set; }
@@ -25,11 +25,12 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
         public Mesa(){
         }
 
-        public Mesa(string nomeDoCliente, int numeroDaMesa, int quantidadeDePessoas)
+        public Mesa(string nomeDoCliente, int numeroDaMesa, int quantidadeDePessoas, string observacoes)
         {
             NomeDoCliente = nomeDoCliente;
             NumeroDaMesa = numeroDaMesa;
             QuantidadeDePessoas = quantidadeDePessoas;
+            Observacoes = observacoes;
             Disponibilidade = EstadoDaMesa.OCUPADO;
             //_context.Add(this);
         }

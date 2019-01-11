@@ -7,30 +7,33 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Ia_ComandaRestaurante.Models;
 using Ia_ComandaRestaurante.Models.ViewModels;
+using Ia_ComandaRestaurante.Services;
 
 namespace Ia_ComandaRestaurante.Controllers
 {
     public class PedidoesController : Controller
     {
         private readonly Ia_ComandaRestauranteContext _context;
-        private readonly Pedido _Pedido;
-        
 
+        private readonly PedidoService _pedidoService;
+        private readonly MenuService _menuService;
+        private readonly FuncionarioService _funcionarioService;
+        private readonly MesaService _mesaService;
+        private readonly CalculoDeTempoDeEntrega CDE1 = new CalculoDeTempoDeEntrega();
 
-        public PedidoesController(Pedido pedido)
-        {
-            _Pedido = pedido;
-        }
-
-        public PedidoesController(Ia_ComandaRestauranteContext context)
+        public PedidoesController(MesaService mesaService, MenuService menuService, PedidoService pedidoService, FuncionarioService funcionarioService, Ia_ComandaRestauranteContext context)
         {
             _context = context;
+            _mesaService = mesaService;
+            _menuService = menuService;
+            _pedidoService = pedidoService;
+            _funcionarioService = funcionarioService;
         }
+               
 
         // GET: Pedidoes
         public async Task<IActionResult> Index()
         {
-            var list = _Pedido.ListAll();
             return View(await _context.Pedido.ToListAsync());
         }
 
@@ -55,7 +58,13 @@ namespace Ia_ComandaRestaurante.Controllers
         // GET: Pedidoes/Create
         public IActionResult Create()
         {
-            return View();
+            var mesas = _mesaService.FindAllOcupado();
+            var funcionarios = _funcionarioService.FindAll();
+            var menus = _menuService.FindAll();
+
+            var viewModel = new MenuFormViewModel { Mesas = mesas, Funcionarios = funcionarios, Menus = menus };
+            return View(viewModel);
+            
         }
 
         // POST: Pedidoes/Create
@@ -63,24 +72,35 @@ namespace Ia_ComandaRestaurante.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPedido,PrazoDoPedido,MesaDoPedido,FuncionarioResponsavel,PrecoDoPedido,ItensDoPedido,Completo")] Pedido pedido)
+        public async Task<IActionResult> Create([Bind("IdPedido,PrazoDoPedido,IdMesa,TipoDoPedido,PrecoDoPedido,Estado,Observacoes,NomeDoFuncionario,IdFuncionario,IdMenu")] Pedido pedido)
         {
             if (ModelState.IsValid)
             {
-                
-                if (pedido.TipoDoPedido == "Bebida")
+                CalculoDeTempoDeEntrega CDE1 = new CalculoDeTempoDeEntrega(_context);
+                IEnumerable<Pedido> pedidosAbertos = _pedidoService.FindAllOpen();
+                var prazoDoPedido = CDE1.CalcularTempo(pedidosAbertos);
+                pedido.PrazoDoPedido = prazoDoPedido;
+                _context.Add(pedido);
+                var entity = _context.Pedido.Find(pedido.IdPedido);
+                if (entity == null)
                 {
-                    Copa copa = new Copa(pedido, pedido.ItensDoPedido);
-                    _context.Add(copa);
+                    _context.Update(pedido);
                 }
                 else
                 {
-                    Cozinha cozinha = new Cozinha(pedido, pedido.ItensDoPedido);
-                    _context.Add(cozinha);
+                    _context.Entry(entity).CurrentValues.SetValues(pedido);
                 }
-
-
-                _context.AddRange(pedido);
+                if (pedido.TipoDoPedido == "Bebida")
+                {
+#pragma warning disable EF1000 // Possible SQL injection vulnerability.
+                    _context.Add(new Copa { Pedido = pedido, Menu = pedido.Menu });
+                    #pragma warning restore EF1000 // Possible SQL injection vulnerability.
+                } else
+                {
+#pragma warning disable EF1000 // Possible SQL injection vulnerability.
+                    _context.Add(new Cozinha { Pedido = pedido, Menu = pedido.Menu }); 
+                    #pragma warning restore EF1000 // Possible SQL injection vulnerability.
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -108,7 +128,7 @@ namespace Ia_ComandaRestaurante.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPedido,PrazoDoPedido,MesaDoPedido,FuncionarioResponsavel,PrecoDoPedido,ItensDoPedido,Completo")] Pedido pedido)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPedido,PrazoDoPedido,TipoDoPedido,PrecoDoPedido,Estado,Observacoes,NomeDoFuncionario")] Pedido pedido)
         {
             if (id != pedido.IdPedido)
             {

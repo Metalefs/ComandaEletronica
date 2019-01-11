@@ -7,22 +7,29 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Ia_ComandaRestaurante.Models;
 using Ia_ComandaRestaurante.Models.ViewModels;
+using Ia_ComandaRestaurante.Services;
 
 namespace Ia_ComandaRestaurante.Controllers
 {
+   
     public class MesasController : Controller
     {
+        
         private readonly Ia_ComandaRestauranteContext _context;
+        private readonly Mesa _Mesa;
+        private readonly MesaService _mesaService;
 
-        public MesasController(Ia_ComandaRestauranteContext context)
+
+        public MesasController(MesaService mesaService, Ia_ComandaRestauranteContext context)
         {
+            _mesaService = mesaService;
             _context = context;
         }
-
+        
         // GET: Mesas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Mesa.ToListAsync());
+            return View(await _context.Mesa.OrderBy(p => p.Disponibilidade == Models.ViewModels.Enums.EstadoDaMesa.OCUPADO).ToListAsync());
         }
 
         // GET: Mesas/Details/5
@@ -46,7 +53,10 @@ namespace Ia_ComandaRestaurante.Controllers
         // GET: Mesas/Create
         public IActionResult Create()
         {
-            return View();
+            List<Mesa> mesaDisp = _mesaService.FindAllDisponivel();
+            List<Mesa> mesaTotal = _mesaService.FindAll();
+            var viewModel = new MesaFormViewModel {ListaMesaDisponivel = mesaDisp, ListaMesaTotal = mesaTotal, Mesa = _Mesa};
+            return View(viewModel);
         }
 
         // POST: Mesas/Create
@@ -54,11 +64,21 @@ namespace Ia_ComandaRestaurante.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdMesa,NomeDoCliente,NumeroDaMesa,QuantidadeDePessoas,disponivel")] Mesa mesa)
+        public async Task<IActionResult> Create([Bind("IdMesa,NomeDoCliente,NumeroDaMesa,QuantidadeDePessoas,Observacoes,Disponibilidade")] Mesa mesa)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(mesa);
+                 // assume Entity base class have an Id property for all items
+                    var entity = _context.Mesa.Find(mesa.IdMesa);
+                if (entity == null)
+                {
+                    _context.Update(mesa);
+                }
+                else
+                {
+
+                    _context.Entry(entity).CurrentValues.SetValues(mesa);
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

@@ -1,6 +1,5 @@
 ﻿@model Ia_ComandaRestaurante.Models.ViewModels.Pedido
 
-
 @{
     ViewData["Title"] = "Detalhes";
     int i = 0;
@@ -12,48 +11,48 @@
 <div>
     <h4>Pedido</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PrazoDoPedido) minutos
+    <dl class="row card-body">
+        <dt class = "mcol-sm-2">
+            Prazo do Pedido:
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PrazoDoPedido)
+        <dd class="mcol-sm-10">
+            @Html.DisplayFor(model => model.PrazoDoPedido)  minutos
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MesaDoPedido.NumeroDaMesa)
+        <dt class="mcol-sm-2">
+            Numero da Mesa:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "mcol-sm-10">
             @Html.DisplayFor(model => model.MesaDoPedido)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GetFuncionarioResponsavel())
+        <dt class="mcol-sm-2">
+            Funcionario Responsavel:
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GetFuncionarioResponsavel())
+        <dd class = "mcol-sm-10">
+            @Html.DisplayFor(model => model.NomeDoFuncionario)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PrecoDoPedido) Reais
+        <dt class="mcol-sm-2">
+            Preço do Pedido:
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PrecoDoPedido)
+        <dd class="mcol-sm-10">
+            R$ @Html.DisplayFor(model => model.PrecoDoPedido)
         </dd>
         
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ItensDoPedido)
+        <dt class="mcol-sm-2">
+            Item do Pedido:
         </dt>
            
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ItensDoPedido)
+        <dd class = "mcol-sm-10">
+            @Html.DisplayFor(model => model.Menu)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
+        <dt class="mcol-sm-2">
+            Estado:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "mcol-sm-10">
             @Html.DisplayFor(model => model.Estado)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.IdPedido">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.IdPedido">Editar</a> |
     <a asp-action="Index">Voltar aos pedidos</a>
 </div>

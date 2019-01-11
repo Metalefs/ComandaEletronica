@@ -10,48 +10,48 @@
 <div>
     <h4>Pedido</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+    <dl class="table-row">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PrazoDoPedido)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PrazoDoPedido)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MesaDoPedido)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MesaDoPedido)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GetFuncionarioResponsavel())
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NomeDoFuncionario)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GetFuncionarioResponsavel())
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NomeDoFuncionario)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PrecoDoPedido)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PrecoDoPedido)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ItensDoPedido)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Menu)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ItensDoPedido)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Menu)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Estado)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Estado)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdPedido" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Deletar" class="btn btn-danger" /> |
         <a asp-action="Index">Voltar aos pedidos</a>
     </form>
 </div>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Ia_ComandaRestaurante.Models;
 using Ia_ComandaRestaurante.Models.ViewModels;
+using Ia_ComandaRestaurante.Services;
 
 namespace Ia_ComandaRestaurante.Controllers
 {
@@ -46,6 +47,7 @@ namespace Ia_ComandaRestaurante.Controllers
         // GET: Menus/Create
         public IActionResult Create()
         {
+            MenuService MS = new MenuService(_context);
             return View();
         }
 

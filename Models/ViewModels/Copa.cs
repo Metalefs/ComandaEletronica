@@ -18,12 +18,18 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
             _context = context;
         }
 
+
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdCopa { get; set; }
+        public Pedido Pedido { get; set; }
         public int IdPedido { get; set; }
+        public Menu Menu { get; set; }
         public int IdMenu { get; set; }
         public string Observacoes { get; set; }
-        
-        //public Pedido PedidosCopa { get; set; }
+
+
+
 
         public Copa()
         {
@@ -32,13 +38,15 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
 
         public Copa(Pedido pedidosCopa, Menu menu)
         {
+            Menu = menu;
+            Pedido = pedidosCopa;
             IdPedido = pedidosCopa.IdPedido;
             IdMenu = menu.IdMenu;
-            if(pedidosCopa.Observacoes != null)
+            if (pedidosCopa.Observacoes != null)
             {
                 Observacoes = pedidosCopa.Observacoes;
             }
-           // PedidosCopa = pedidosCopa;
+
         }
         public List<Pedido> ListAll()
         {

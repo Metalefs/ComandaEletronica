@@ -48,13 +48,9 @@ C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug
 C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Pedidoes\Details.g.cshtml.cs
 C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Pedidoes\Edit.g.cshtml.cs
 C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Pedidoes\Index.g.cshtml.cs
-C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Cozinhas\Create.g.cshtml.cs
-C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Cozinhas\Delete.g.cshtml.cs
-C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Cozinhas\Details.g.cshtml.cs
-C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Cozinhas\Edit.g.cshtml.cs
-C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Cozinhas\Index.g.cshtml.cs
-C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Copas\Create.g.cshtml.cs
-C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Copas\Delete.g.cshtml.cs
 C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Copas\Details.g.cshtml.cs
-C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Copas\Edit.g.cshtml.cs
 C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Copas\Index.g.cshtml.cs
+C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Cozinhas\Details.g.cshtml.cs
+C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Cozinhas\Index.g.cshtml.cs
+C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Copas\Delete.g.cshtml.cs
+C:\Users\User\source\repos\Ia-ComandaRestaurante\Ia-ComandaRestaurante\obj\Debug\netcoreapp2.2\Razor\Views\Cozinhas\Delete.g.cshtml.cs

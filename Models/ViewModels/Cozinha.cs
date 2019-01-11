@@ -20,7 +20,11 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
 
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdCozinha { get; set; }
+        public Pedido Pedido { get; set; }
         public int IdPedido { get; set; }
+        public Menu Menu { get; set; }
         public int IdMenu { get; set; }
         public string Observacoes { get; set; }
         
@@ -34,6 +38,8 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
 
         public Cozinha(Pedido pedidosCozinha, Menu menu)
         {
+            Menu = menu;
+            Pedido = pedidosCozinha;
             IdPedido = pedidosCozinha.IdPedido;
             IdMenu = menu.IdMenu;
             if (pedidosCozinha.Observacoes != null)

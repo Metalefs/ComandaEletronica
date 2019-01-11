@@ -7,9 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\MenuController.cs" />
     <Compile Remove="Migrations\20190106232116_Second.cs" />
     <Compile Remove="Migrations\20190106232116_Second.Designer.cs" />
+    <Compile Remove="Migrations\20190110125512_lastcor1.cs" />
+    <Compile Remove="Migrations\20190110125512_lastcor1.Designer.cs" />
+    <Compile Remove="Migrations\20190110130031_lastcor2.cs" />
+    <Compile Remove="Migrations\20190110130031_lastcor2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Copas\Details.cshtml" />
+    <None Include="Views\Copas\Index.cshtml" />
+    <None Include="Views\Cozinhas\Details.cshtml" />
+    <None Include="Views\Cozinhas\Index.cshtml" />
   </ItemGroup>
 
 
