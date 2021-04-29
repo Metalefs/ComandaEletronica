@@ -1,0 +1,59 @@
+[
+
+	{
+		"Nome": "Sanduiche de peito de frango grelhado",
+		"Tipo": "Comida",
+		"Descricao": "Sanduiche empacotado de proteínas!",
+		"Preco": 5,
+		"Img": "/images/Chicken-sandwich.jpg",
+		"Complexidade": "baixa"
+	},
+	{
+		"Nome": "Nachos",
+		"Tipo": "Comida",
+		"Descricao": "Aproveite o melhor da cultura Mexicana com os nossos pratos!",
+		"Preco": 5,
+		"Img": "/images/Nachos.jpg",
+		"Complexidade": "média"
+	},
+	{
+		"Nome": "Taco",
+		"Tipo": "Comida",
+		"Descricao": "Aquele taco que você respeita.",
+		"Preco": 4.5,
+		"Img": "/images/Taco.jpg",
+		"Complexidade": "média"
+	},
+	{
+		"Nome": "Pizza",
+		"Tipo": "Comida",
+		"Descricao": "A famosa pizza, top 5 das refeições a lá PobrerAgi.",
+		"Preco": 8,
+		"Img": "/images/Pizza.jpg",
+		"Complexidade": "média"
+	},
+	{
+		"Nome": "Refrigerante",
+		"Tipo": "Bebida",
+		"Descricao": "O rémedio preto favorito das crianças.",
+		"Preco": 4.5,
+		"Img": "/images/Refrigerante.jpg",
+		"Complexidade": "baixa"
+	},
+	{
+		"Nome": "Cerveja",
+		"Tipo": "Bebida",
+		"Descricao": "Gelada ao seu gosto.",
+		"Preco": 4,
+		"Img": "/images/Cerveja.jpg",
+		"Complexidade": "baixa"
+	},
+	{
+		"Nome": "Porção de carne",
+		"Tipo": "Comida",
+		"Descricao": "Carne assada na hora.",
+		"Preco": 7,
+		"Img": "/images/Carne.jpg",
+		"Complexidade": "média"
+	}
+]

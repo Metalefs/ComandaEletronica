@@ -36,11 +36,13 @@ namespace Ia_ComandaRestaurante
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddMvcOptions(MvcOptions => MvcOptions.EnableEndpointRouting = false);
 
+            //services.AddEntityFrameworkMySql();
+            string connectionString = Configuration.GetConnectionString("Ia-ComandaRestauranteContext");
             services.AddDbContext<Ia_ComandaRestauranteContext>(options =>
-                   options.UseMySql(Configuration.GetConnectionString("Ia-ComandaRestauranteContext"), builder =>
-                        builder.MigrationsAssembly("Ia-ComandaRestaurante")));
+                   options.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString), builder =>
+                        builder.MigrationsAssembly("ComandaEletronica")));
             services.AddScoped<SeedingService>();
             services.AddScoped<PedidoService>();
             services.AddScoped<MenuService>();

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Ia_ComandaRestaurante.Models;
 using Ia_ComandaRestaurante.Models.ViewModels;
 using Ia_ComandaRestaurante.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ia_ComandaRestaurante.Controllers
 {

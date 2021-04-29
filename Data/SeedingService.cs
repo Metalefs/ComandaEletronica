@@ -38,7 +38,7 @@ namespace Ia_ComandaRestaurante.Data
             //ITENS DO CARDAPIO
             string cardapioJson;
             WebClient client = new WebClient();
-            cardapioJson = client.DownloadString("http://eumotorista.portifoliotgm.esy.es/IA/cardapioJSON.txt");
+            cardapioJson = client.DownloadString("./wwwroot/cardapio.json");
             
             List<Menu> ListaCardapio = JsonConvert.DeserializeObject<List<Menu>>(cardapioJson);
             

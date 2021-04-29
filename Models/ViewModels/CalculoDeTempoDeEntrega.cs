@@ -60,7 +60,7 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
 
             //strCommand is path and file name of command to run
-            pProcess.StartInfo.FileName = "C:/Users/User/source/repos/Ia-ComandaRestaurante/Ia-ComandaRestaurante/bin/CalculaTempo.exe";
+            pProcess.StartInfo.FileName = "C:/Users/User/source/repos/ComandaEletronica/CalculaTempo.exe";
 
             //strCommandParameters are parameters to pass to program
 
@@ -70,16 +70,16 @@ namespace Ia_ComandaRestaurante.Models.ViewModels
             pProcess.StartInfo.RedirectStandardOutput = true;
 
             //Start the process
-            pProcess.Start();
+            //pProcess.Start();
 
             //Get program output
-            string strOutput = pProcess.StandardOutput.ReadToEnd();
+            //string strOutput = pProcess.StandardOutput.ReadToEnd();
 
             //Wait for process to finish
-            pProcess.WaitForExit();
+            //pProcess.WaitForExit();
 
 
-            return strOutput;
+            return "";//strOutput;
 
 
         }
